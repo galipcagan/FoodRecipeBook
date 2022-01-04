@@ -1,0 +1,30 @@
+﻿@model RecipeViewModel
+@{
+    ViewData["Title"] = "Recipes";
+}
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <td>Recipe Name</td>
+
+            <td>Ingredients</td>
+            <td>Meal Type</td>
+        </tr>
+    </thead>
+
+    @foreach (var item in Model.Items)
+    {
+        <tr>
+            <td>@item.Name</td>
+
+            <td>
+                @foreach (var ingredient in item.Ingredients)
+                {
+                    @ingredient
+                }
+            </td>
+        <td>@item.MealType</td>
+        </tr>
+    }
+</table>
