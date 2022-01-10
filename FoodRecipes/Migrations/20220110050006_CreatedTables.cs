@@ -3,28 +3,30 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace FoodRecipes.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class CreatedTables : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Items",
+                name: "Recipe",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
                     Name = table.Column<string>(nullable: false),
-                    Ingredients = table.Column<string>(nullable: true)
+                    Ingredients = table.Column<string>(nullable: true),
+                    MealType = table.Column<string>(nullable: true),
+                    Instruction = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Items", x => x.Id);
+                    table.PrimaryKey("PK_Recipe", x => x.Id);
                 });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Items");
+                name: "Recipe");
         }
     }
 }

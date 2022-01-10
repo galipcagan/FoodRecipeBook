@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FoodRecipes.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210927022635_AddMealColumn")]
-    partial class AddMealColumn
+    [Migration("20220110050006_CreatedTables")]
+    partial class CreatedTables
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -27,8 +27,11 @@ namespace FoodRecipes.Migrations
                     b.Property<string>("Ingredients")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("MealType")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("Instruction")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("MealType")
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -36,7 +39,7 @@ namespace FoodRecipes.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Items");
+                    b.ToTable("Recipe");
                 });
 #pragma warning restore 612, 618
         }

@@ -16,7 +16,7 @@ namespace FoodRecipes.Services
 
         public async Task<Recipe[]> GetIncompleteItemsAsync()
         {
-            var items = await _context.Items
+            var items = await _context.Recipe
             .ToArrayAsync();
 
             return items;
@@ -26,7 +26,7 @@ namespace FoodRecipes.Services
         {
             newRecipe.Id = Guid.NewGuid();
 
-            _context.Items.Add(newRecipe);
+            _context.Recipe.Add(newRecipe);
 
             var saveResult = await _context.SaveChangesAsync();
             return saveResult == 1;

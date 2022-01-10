@@ -30,8 +30,8 @@ namespace FoodRecipes
             services.AddControllersWithViews();
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlite("Data Source=recipe.db"));
-            services.AddScoped<IRecipeItemService, FakeRecipeItemService>();
-            services.AddControllersWithViews().AddRazorRuntimeCompilation();
+            services.AddScoped<IRecipeItemService, RecipeService>();
+            services.AddControllersWithViews().AddRazorRuntimeCompilation(); //added to not rebuild constantly for razor pages
 
         }
 
