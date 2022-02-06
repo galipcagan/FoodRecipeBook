@@ -75,6 +75,22 @@ namespace FoodRecipes.Controllers
 
             return RedirectToAction("Index");
         }
+        public async Task<IActionResult> UpdateRecipe(Recipe updatedRecipe)
+        {
+
+            if (!ModelState.IsValid)
+            {
+                return RedirectToAction("Index");
+            }
+
+            var succesfull = await _recipeItemService.UpdateItemAsync(updatedRecipe);
+            if (!succesfull)
+            {
+                return BadRequest("Could not update recipe");
+            }
+
+            return RedirectToAction("ViewEdit", new {recipeId = updatedRecipe.Id});
+        }
 
         public async Task<IActionResult> ViewIndex()
         {

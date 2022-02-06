@@ -39,5 +39,19 @@ namespace FoodRecipes.Services
             var saveResult = await _context.SaveChangesAsync();
             return saveResult == 1;
         }
+        public async Task<bool> UpdateItemAsync(Recipe updatedRecipe)
+        {
+            var item = await _context.Recipe
+                .Where(x => x.Id == updatedRecipe.Id)
+                .AsNoTracking()
+                .SingleOrDefaultAsync();
+
+            if (item == null) return false;
+
+             _context.Recipe.Update(updatedRecipe);
+
+            var saveResult = await _context.SaveChangesAsync();
+            return saveResult == 1;
+        }
     }
 }

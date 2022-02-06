@@ -38,5 +38,9 @@ namespace FoodRecipes.Services
         {
             throw new NotImplementedException();
         }
+        public Task<bool> UpdateItemAsync(Recipe updatedRecipe)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -4,8 +4,9 @@
 
 <div class="text-center">
     <h2 class="display-4"> Create a recipe</h2>
-    <form asp-action="AddRecipe" method="POST">
+    <form asp-action="UpdateRecipe" method="POST">
         <div class="form-group">
+            <input type="hidden" id="Id" name="Id" value="@Model.Id" />
             <label>Recipe Name</label>
             <input asp-for="Name" type="text" class="form-control" id="inputValue" placeholder="Enter Recipe Name" />
             <br />
@@ -21,18 +22,19 @@
 
                     var textBoxDiv = "textboxDiv" + counter;
                     var deleteBox = "deleteBox" + counter;
-                    counter++;
-                    <div id= @{@textBoxDiv} class="input-group mb-3">
+
+                    <div id=@{@textBoxDiv} class="input-group mb-3">
                         <div class="input-group-append">
-                            <input class="form-control" asp-for="@ingredient"
+                            <input class="form-control" asp-for="@ingredient" name="Ingredients[@counter]"
                                    placeholder="Ingredient" aria-label="Ingredient" aria-describedby="basic-addon2">
-                            @if (counter > 1)
+                            @if (counter >= 1)
                             {
-                                <button id="@{@deleteBox} "class="btn btn-outline-secondary" type="button" onclick="DeleteIngredient(@textBoxDiv)">x</button>
+                                <button id="@{@deleteBox} " class="btn btn-outline-secondary" type="button" onclick="DeleteIngredient(@textBoxDiv)">x</button>
                             }
+
                         </div>
                     </div>
-                    
+                    counter++;
                 }
                 <br />
             </div>

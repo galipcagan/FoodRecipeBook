@@ -10,5 +10,6 @@ namespace FoodRecipes.Services
         Task<Recipe[]> GetIncompleteItemsAsync();
         Task<bool> AddItemAsync(Recipe newRecipe);
         Task<Recipe> GetItemAsync(Guid recipeId);
+        Task<bool> UpdateItemAsync(Recipe updatedRecipe);
     }
 }
