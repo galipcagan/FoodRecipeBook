@@ -15,13 +15,16 @@
 
     @foreach (var item in Model.Items)
     {
-        <tr onclick="location.href = '@(Url.Action("ViewEdit", "Recipe", new {recipeId = item.Id }))'">
-            <td>@item.Name</td>
+        <tr>
+            <td onclick="location.href = '@(Url.Action("ViewEdit", "Recipe", new {recipeId = item.Id }))'">@item.Name</td>
             @{
              var allIngridients = string.Join(", ", item.Ingredients);
             }
-            <td>@allIngridients</td>
-            <td>@item.MealType</td>
+            <td onclick="location.href = '@(Url.Action("ViewEdit", "Recipe", new {recipeId = item.Id }))'">@allIngridients</td>
+            <td onclick="location.href = '@(Url.Action("ViewEdit", "Recipe", new {recipeId = item.Id }))'">@item.MealType</td>
+            <td onclick="location.href = '@(Url.Action("DeleteRecipe", "Recipe", new {deletedRecipeId = item.Id }))'">
+                Delete
+            </td>
         </tr>
     }
 </table>

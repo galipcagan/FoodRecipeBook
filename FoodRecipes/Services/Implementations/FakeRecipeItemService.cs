@@ -42,5 +42,9 @@ namespace FoodRecipes.Services
         {
             throw new NotImplementedException();
         }
+        public Task<bool> DeleteItemAsync(Guid deletedRecipe)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

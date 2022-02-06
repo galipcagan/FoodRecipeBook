@@ -34,12 +34,6 @@ namespace FoodRecipes.Controllers
 
         public IActionResult AddEditIndex()
         {
-            //var item = await _recipeItemService.GetIncompleteItemsAsync();
-            //var model = new RecipeViewModel()
-            //{
-            //    Items = item
-            //};
-
             var model = new RecipeEditViewModel();
             return View(model);
         }
@@ -56,6 +50,16 @@ namespace FoodRecipes.Controllers
             };
 
             return View(model);
+        }
+        public async Task<IActionResult> DeleteRecipe(Guid deletedRecipeId)
+        {
+            var succesfull = await _recipeItemService.DeleteItemAsync(deletedRecipeId);
+            if (!succesfull)
+            {
+                return BadRequest("Could not delete recipe");
+            }
+
+            return RedirectToAction("Index");
         }
 
 

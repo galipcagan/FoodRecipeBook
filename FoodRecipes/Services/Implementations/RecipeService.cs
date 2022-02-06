@@ -53,5 +53,19 @@ namespace FoodRecipes.Services
             var saveResult = await _context.SaveChangesAsync();
             return saveResult == 1;
         }
+        public async Task<bool> DeleteItemAsync(Guid deleteRecipeId)
+        {
+            var item = await _context.Recipe
+                .Where(x => x.Id == deleteRecipeId)
+                .AsNoTracking()
+                .SingleOrDefaultAsync();
+
+            if (item == null) return false;
+
+            _context.Recipe.Remove(item);
+
+            var saveResult = await _context.SaveChangesAsync();
+            return saveResult == 1;
+        }
     }
 }

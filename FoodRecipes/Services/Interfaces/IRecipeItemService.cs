@@ -11,5 +11,6 @@ namespace FoodRecipes.Services
         Task<bool> AddItemAsync(Recipe newRecipe);
         Task<Recipe> GetItemAsync(Guid recipeId);
         Task<bool> UpdateItemAsync(Recipe updatedRecipe);
+        Task<bool> DeleteItemAsync(Guid deletedRecipeId);
     }
 }
