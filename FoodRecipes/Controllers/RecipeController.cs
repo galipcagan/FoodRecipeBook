@@ -43,6 +43,20 @@ namespace FoodRecipes.Controllers
             var model = new RecipeEditViewModel();
             return View(model);
         }
+        public async Task<IActionResult> ViewEdit(Guid recipeId)
+        {
+            var item = await _recipeItemService.GetItemAsync(recipeId);
+            var model = new RecipeEditViewModel()
+            {
+                 Id = item.Id,
+                 Ingredients = item.Ingredients,
+                 MealType = item.MealType,
+                 Name = item.Name,
+                 Instruction = item.Instruction
+            };
+
+            return View(model);
+        }
 
 
         public async Task<IActionResult> AddRecipe(Recipe newRecipe)

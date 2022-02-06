@@ -1,0 +1,82 @@
+﻿@model RecipeEditViewModel
+
+@{ ViewData["Title"] = "Recipes"; }
+
+<div class="text-center">
+    <h2 class="display-4"> Create a recipe</h2>
+    <form asp-action="AddRecipe" method="POST">
+        <div class="form-group">
+            <label>Recipe Name</label>
+            <input asp-for="Name" type="text" class="form-control" id="inputValue" placeholder="Enter Recipe Name" />
+            <br />
+            <label>Ingredients</label>
+
+
+            @{
+                var counter = 0;
+            }
+            <div id="textboxGroup" class="input-group mb-3">
+                @foreach (var ingredient in Model.Ingredients)
+                {
+
+                    var textBoxDiv = "textboxDiv" + counter;
+                    var deleteBox = "deleteBox" + counter;
+                    counter++;
+                    <div id= @{@textBoxDiv} class="input-group mb-3">
+                        <div class="input-group-append">
+                            <input class="form-control" asp-for="@ingredient"
+                                   placeholder="Ingredient" aria-label="Ingredient" aria-describedby="basic-addon2">
+                            @if (counter > 1)
+                            {
+                                <button id="@{@deleteBox} "class="btn btn-outline-secondary" type="button" onclick="DeleteIngredient(@textBoxDiv)">x</button>
+                            }
+                        </div>
+                    </div>
+                    
+                }
+                <br />
+            </div>
+
+
+            <div class="">
+                <button class="btn btn-outline-secondary" type="button" onclick="AddNewIngredient()">Add Ingredient</button>
+            </div>
+
+            <div>
+                <label>Meal Type</label><br />
+                <select asp-for="MealType" asp-items="Model.MealTypes" class="form-control"></select>
+            </div>
+
+            <div>
+                <label>Instructions</label><br />
+                <textarea asp-for="Instruction" class="form-control"></textarea>
+            </div>
+        </div>
+        <button type="reset" class="btn btn-primary">Cancel Recipe</button>
+        <button type="submit" class="btn btn-primary">Save Recipe</button>
+    </form>
+</div>
+
+<script type="text/javascript">
+    var counter = '@Model.Ingredients.Count()';
+
+    function AddNewIngredient() {
+        var newTextBoxDiv = $(document.createElement('div'))
+            .attr("id", 'textboxDiv' + counter)
+            .attr("class", 'input-group mb-3');
+
+        newTextBoxDiv.after().html('<div class="input-group-append">'
+            + '<input id="Ingredients_'+ counter +'_"     class="form-control" placeholder="Ingredient"'
+            + 'aria-label="Ingredient" aria-describedby="basic-addon2" type = "text"  name = "Ingredients['
+            + counter + ']" >'
+            + '<button class="btn btn-outline-secondary" type="button" onclick="DeleteIngredient()">x</button>'
+            + '</div > '
+        );
+        newTextBoxDiv.appendTo("#textboxGroup");
+        counter++;
+    }
+
+    function DeleteIngredient(item) {
+        $(item).remove();
+        counter--;
+    }</script>

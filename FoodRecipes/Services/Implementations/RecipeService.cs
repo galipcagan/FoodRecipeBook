@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using FoodRecipes.Data;
 using FoodRecipes.Models;
@@ -20,6 +21,13 @@ namespace FoodRecipes.Services
             .ToArrayAsync();
 
             return items;
+        }
+
+        public async Task<Recipe> GetItemAsync( Guid recipeId)
+        {
+           return await _context.Recipe
+                .Where(x => x.Id == recipeId)
+                .FirstOrDefaultAsync();         
         }
 
         public async Task<bool> AddItemAsync(Recipe newRecipe)

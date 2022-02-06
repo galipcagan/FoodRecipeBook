@@ -7,24 +7,21 @@
     <thead>
         <tr>
             <td>Recipe Name</td>
-
             <td>Ingredients</td>
             <td>Meal Type</td>
+            <td></td>
         </tr>
     </thead>
 
     @foreach (var item in Model.Items)
     {
-        <tr>
+        <tr onclick="location.href = '@(Url.Action("ViewEdit", "Recipe", new {recipeId = item.Id }))'">
             <td>@item.Name</td>
-
-            <td>
-                @foreach (var ingredient in item.Ingredients)
-                {
-                    @ingredient
-                }
-            </td>
-        <td>@item.MealType</td>
+            @{
+             var allIngridients = string.Join(", ", item.Ingredients);
+            }
+            <td>@allIngridients</td>
+            <td>@item.MealType</td>
         </tr>
     }
 </table>

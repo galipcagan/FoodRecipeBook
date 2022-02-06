@@ -33,5 +33,10 @@ namespace FoodRecipes.Services
 
             return Task.FromResult(new[] { item1, item2 });
         }
+
+        public Task<Recipe> GetItemAsync(Guid recipeId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
