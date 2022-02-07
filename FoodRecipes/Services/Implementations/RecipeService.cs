@@ -22,6 +22,14 @@ namespace FoodRecipes.Services
 
             return items;
         }
+        public async Task<Recipe[]> SearchRecipe(string searchString)
+        {
+            var items = await _context.Recipe
+                .Where(x=>x.Name.Contains(searchString))
+                .ToArrayAsync();
+
+            return items;
+        }
 
         public async Task<Recipe> GetItemAsync( Guid recipeId)
         {

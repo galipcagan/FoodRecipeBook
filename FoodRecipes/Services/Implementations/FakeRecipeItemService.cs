@@ -46,5 +46,9 @@ namespace FoodRecipes.Services
         {
             throw new NotImplementedException();
         }
+        public Task<Recipe[]> SearchRecipe(string searchText)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

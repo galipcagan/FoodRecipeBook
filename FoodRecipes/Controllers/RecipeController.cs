@@ -106,5 +106,16 @@ namespace FoodRecipes.Controllers
 
             return View(model);
         }
+
+        public async Task<IActionResult> SearchRecipe(string searchString)
+        {
+            var item = await _recipeItemService.SearchRecipe(searchString);
+            var model = new RecipeViewModel()
+            {
+                Items = item
+            };
+
+            return View("Index", model);
+        }
     }
 }
