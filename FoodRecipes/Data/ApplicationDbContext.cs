@@ -20,7 +20,8 @@ namespace FoodRecipes.Data
         {
             base.OnModelCreating(builder);
 
-            builder.Entity<Recipe>().Property(p => p.Ingredients)
+            builder.Entity<Recipe>()
+                .Property(p => p.Ingredients)
                 .HasConversion(
                     v => JsonConvert.SerializeObject(v),
                     v => JsonConvert.DeserializeObject<List<string>>(v));

@@ -30,5 +30,6 @@
   <ItemGroup>
     <None Remove="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" />
     <None Remove="Newtonsoft.Json" />
+    <None Remove="Microsoft.Extensions.Caching.Memory" />
   </ItemGroup>
 </Project>

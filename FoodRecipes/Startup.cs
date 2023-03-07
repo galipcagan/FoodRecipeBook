@@ -12,6 +12,8 @@ using FoodRecipes.Services;
 using FoodRecipes.Data;
 using Microsoft.EntityFrameworkCore.Sqlite;
 using Microsoft.EntityFrameworkCore;
+using FoodRecipes.Services.Implementations;
+using FoodRecipes.Services.Interfaces;
 
 namespace FoodRecipes
 {
@@ -20,9 +22,11 @@ namespace FoodRecipes
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+            StaticConfig = configuration;
         }
 
         public IConfiguration Configuration { get; }
+        public static IConfiguration StaticConfig { get; private set; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -31,7 +35,10 @@ namespace FoodRecipes
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlite("Data Source=recipe.db"));
             services.AddScoped<IRecipeItemService, RecipeService>();
+            services.AddScoped<IRecipeProcessor, RecipeProcessor>();
             services.AddControllersWithViews().AddRazorRuntimeCompilation(); //added to not rebuild constantly for razor pages
+            services.AddMemoryCache();
+            ApiHelper.InitializeClient();
 
         }
 

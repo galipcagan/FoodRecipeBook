@@ -15,7 +15,6 @@ namespace FoodRecipes.Controllers
         private readonly ILogger<RecipeController> _logger;
         private readonly IRecipeItemService _recipeItemService;
 
-
         public RecipeController(IRecipeItemService recipeItem)
         {
             _recipeItemService = recipeItem;

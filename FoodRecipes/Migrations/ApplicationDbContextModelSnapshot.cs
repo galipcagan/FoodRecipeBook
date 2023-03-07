@@ -16,6 +16,21 @@ namespace FoodRecipes.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "3.1.3");
 
+            modelBuilder.Entity("FoodRecipes.Models.MealTypes", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("MealTypes");
+                });
+
             modelBuilder.Entity("FoodRecipes.Models.Recipe", b =>
                 {
                     b.Property<Guid>("Id")
